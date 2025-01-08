@@ -17,7 +17,7 @@ jobs:
           - name: qubership-prometheus-adapter-operator
             file: Dockerfile
           - name: qubership-prometheus-adapter
-            file: Dockerfile
+            file: prometheus-adapter/Dockerfile
             context: prometheus-adapter
     runs-on: ubuntu-latest
     steps:
