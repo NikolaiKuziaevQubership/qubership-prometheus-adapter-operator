@@ -33,10 +33,14 @@ spec:
   {{- end }}
   enableResourceMetrics: {{ .Values.prometheusAdapter.enableResourceMetrics }}
   enableCustomMetrics: {{ .Values.prometheusAdapter.enableCustomMetrics }}
+  {{- if .Values.prometheusAdapter.securityContext }}
   securityContext:
     {{ .Values.prometheusAdapter.securityContext }}
+  {{- end }}
+  {{- if .Values.prometheusAdapter.resources }}
   resources:
     {{ .Values.prometheusAdapter.resources }}
+  {{- end }}
   {{- if .Values.prometheusAdapter.labels }}
   labels:
     {{- toYaml .Values.prometheusAdapter.labels | nindent 4 }}
