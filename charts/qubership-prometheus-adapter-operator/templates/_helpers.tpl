@@ -33,3 +33,31 @@ app.kubernetes.io/component: prometheus-adapter
 app.kubernetes.io/part-of: monitoring
 app.kubernetes.io/version: {{ .Chart.AppVersion }}
 {{- end }}
+
+{{/*
+Find a prometheus-adapter-operator image in various places.
+Image can be found from:
+* specified by user from .Values.image
+* default value
+*/}}
+{{- define "prometheus-adapter-operator.image" -}}
+  {{- if .Values.image -}}
+    {{- printf "%s" .Values.image -}}
+  {{- else -}}
+    {{- printf "ghcr.io/netcracker/qubership-prometheus-adapter-operator:main" -}}
+  {{- end -}}
+{{- end -}}
+
+{{/*
+Find a prometheus-adapter image in various places.
+Image can be found from:
+* specified by user from .Values.prometheusAdapter.image
+* default value
+*/}}
+{{- define "prometheus-adapter.image" -}}
+  {{- if .Values.prometheusAdapter.image -}}
+    {{- printf "%s" .Values.prometheusAdapter.image -}}
+  {{- else -}}
+    {{- printf "ghcr.io/netcracker/prometheus-adapter:main" -}}
+  {{- end -}}
+{{- end -}}
