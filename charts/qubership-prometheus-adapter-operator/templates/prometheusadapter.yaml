@@ -23,7 +23,7 @@ metadata:
     {{- include "qubership-prometheus-adapter-operator.commonlLabels" . | nindent 4 }}
 spec:
   {{- toYaml .Values.prometheusAdapter | nindent 2 }}
-  image: {{ .Values.prometheusAdapter.image }}
+  image: {{ template "prometheus-adapter.image" . }}
   replicas: {{ .Values.prometheusAdapter.replicas }}
   metricsRelistInterval: {{ .Values.prometheusAdapter.metricsRelistInterval }}
   prometheusUrl: {{ .Values.prometheusAdapter.prometheusUrl }}
